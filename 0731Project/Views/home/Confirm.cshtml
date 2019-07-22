@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "Confirm";
+}
+
+<h2>Confirm</h2>
+
+<pre>
+@ViewBag.ResponseJson
+</pre>
+
+
+@if (ViewBag.Captured == false)
+{
+    <hr/>
+    <form action="@Url.Action("Capture")" method="post">
+      <input type="submit" name="" value="Capture(売上確定)" />
+      <input type="text" name="transactionId" value="@ViewBag.TransactionId" />
+    </form>
+    <hr/>
+    <form action="@Url.Action("Void")" method="post">
+      <input type="submit" name="" value="Void(売上確定待ち状態でのキャンセル)" />
+      <input type="text" name="transactionId" value="@ViewBag.TransactionId" />
+    </form>
+}
+
+@if (ViewBag.Captured == true)
+{
+    <hr/>
+    <form action="@Url.Action("Refund")" method="post">
+      <input type="submit" name="" value="Refund(売上確定後の払い戻し)" />
+      <input type="text" name="transactionId" value="@ViewBag.TransactionId" />
+    </form>
+}

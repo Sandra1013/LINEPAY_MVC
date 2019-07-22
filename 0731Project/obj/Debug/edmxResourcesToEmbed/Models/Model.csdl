@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WiseMachineModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="EmpDb">
+    <Key>
+      <PropertyRef Name="Account" />
+    </Key>
+    <Property Name="Account" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNum" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+    <Property Name="Sex" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="true" />
+    <Property Name="Birthday" Type="String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="AddDate" Type="String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="UpdateTime" Type="String" Nullable="true" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Permission" Type="Int32" />
+    <NavigationProperty Name="MacInvDbs" Relationship="Self.FK_MacInvDb_EmpDb" FromRole="EmpDb" ToRole="MacInvDb" />
+    <Property Name="Assignment" Type="Int32" />
+    <Property Name="MachineId" Type="String" Nullable="true" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="PassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ItemDb">
+    <Key>
+      <PropertyRef Name="ItemId" />
+    </Key>
+    <Property Name="ItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ItemImg" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ItemName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ItemUnitPrice" Type="Int32" />
+    <Property Name="Class" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Calorles" Type="Int32" />
+    <Property Name="Protein" Type="Int32" />
+    <Property Name="Carbohydrate" Type="Int32" />
+    <Property Name="Fat" Type="Int32" />
+    <Property Name="Sugars" Type="Int32" />
+    <Property Name="Sodium" Type="Int32" />
+    <NavigationProperty Name="WarehouseDbs" Relationship="Self.FK_WarehouseDb_ItemDb" FromRole="ItemDb" ToRole="WarehouseDb" />
+  </EntityType>
+  <EntityType Name="MachineDb">
+    <Key>
+      <PropertyRef Name="MachineId" />
+    </Key>
+    <Property Name="MachineId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Serial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Area" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AddDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="MacInvDbs" Relationship="Self.FK_MacInvDb_MachineDb" FromRole="MachineDb" ToRole="MacInvDb" />
+  </EntityType>
+  <EntityType Name="MacInvDb">
+    <Key>
+      <PropertyRef Name="DataNo" />
+    </Key>
+    <Property Name="DataNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MachineId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Account" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ItemId_DataNo" Type="Int32" />
+    <Property Name="Amount" Type="Int32" />
+    <NavigationProperty Name="EmpDb" Relationship="Self.FK_MacInvDb_EmpDb" FromRole="MacInvDb" ToRole="EmpDb" />
+    <NavigationProperty Name="MachineDb" Relationship="Self.FK_MacInvDb_MachineDb" FromRole="MacInvDb" ToRole="MachineDb" />
+    <NavigationProperty Name="WarehouseDb" Relationship="Self.FK_MacInvDb_WarehouseDb" FromRole="MacInvDb" ToRole="WarehouseDb" />
+  </EntityType>
+  <EntityType Name="WarehouseDb">
+    <Key>
+      <PropertyRef Name="DataNo" />
+    </Key>
+    <Property Name="DataNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ItemId" Type="Int32" />
+    <Property Name="Amount" Type="Int32" />
+    <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+    <Property Name="Addtime" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="ItemDb" Relationship="Self.FK_WarehouseDb_ItemDb" FromRole="WarehouseDb" ToRole="ItemDb" />
+    <NavigationProperty Name="MacInvDbs" Relationship="Self.FK_MacInvDb_WarehouseDb" FromRole="WarehouseDb" ToRole="MacInvDb" />
+  </EntityType>
+  <Association Name="FK_MacInvDb_EmpDb">
+    <End Role="EmpDb" Type="Self.EmpDb" Multiplicity="0..1" />
+    <End Role="MacInvDb" Type="Self.MacInvDb" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmpDb">
+        <PropertyRef Name="Account" />
+      </Principal>
+      <Dependent Role="MacInvDb">
+        <PropertyRef Name="Account" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WarehouseDb_ItemDb">
+    <End Role="ItemDb" Type="Self.ItemDb" Multiplicity="0..1" />
+    <End Role="WarehouseDb" Type="Self.WarehouseDb" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ItemDb">
+        <PropertyRef Name="ItemId" />
+      </Principal>
+      <Dependent Role="WarehouseDb">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MacInvDb_MachineDb">
+    <End Role="MachineDb" Type="Self.MachineDb" Multiplicity="0..1" />
+    <End Role="MacInvDb" Type="Self.MacInvDb" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MachineDb">
+        <PropertyRef Name="MachineId" />
+      </Principal>
+      <Dependent Role="MacInvDb">
+        <PropertyRef Name="MachineId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MacInvDb_WarehouseDb">
+    <End Role="WarehouseDb" Type="Self.WarehouseDb" Multiplicity="0..1" />
+    <End Role="MacInvDb" Type="Self.MacInvDb" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WarehouseDb">
+        <PropertyRef Name="DataNo" />
+      </Principal>
+      <Dependent Role="MacInvDb">
+        <PropertyRef Name="ItemId_DataNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WiseMachineEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="EmpDbs" EntityType="Self.EmpDb" />
+    <EntitySet Name="ItemDbs" EntityType="Self.ItemDb" />
+    <EntitySet Name="MachineDbs" EntityType="Self.MachineDb" />
+    <EntitySet Name="MacInvDbs" EntityType="Self.MacInvDb" />
+    <EntitySet Name="WarehouseDbs" EntityType="Self.WarehouseDb" />
+    <AssociationSet Name="FK_MacInvDb_EmpDb" Association="Self.FK_MacInvDb_EmpDb">
+      <End Role="EmpDb" EntitySet="EmpDbs" />
+      <End Role="MacInvDb" EntitySet="MacInvDbs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WarehouseDb_ItemDb" Association="Self.FK_WarehouseDb_ItemDb">
+      <End Role="ItemDb" EntitySet="ItemDbs" />
+      <End Role="WarehouseDb" EntitySet="WarehouseDbs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MacInvDb_MachineDb" Association="Self.FK_MacInvDb_MachineDb">
+      <End Role="MachineDb" EntitySet="MachineDbs" />
+      <End Role="MacInvDb" EntitySet="MacInvDbs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MacInvDb_WarehouseDb" Association="Self.FK_MacInvDb_WarehouseDb">
+      <End Role="WarehouseDb" EntitySet="WarehouseDbs" />
+      <End Role="MacInvDb" EntitySet="MacInvDbs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

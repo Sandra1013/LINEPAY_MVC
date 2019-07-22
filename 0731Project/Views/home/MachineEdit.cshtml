@@ -1,0 +1,142 @@
+﻿
+@{
+    ViewBag.Title = "MachineEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <!--    Hover Rows  -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2> <span class="fa fa-1x fa-desktop">  機臺補貨</span></h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <a href="#" class="btn-adn"><i class="fa fa-5x fa-plus"></i></a>
+    </div>
+    @*第一欄*@
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-hover " id="edit1">
+                        <thead>
+                            <tr>
+                                <th>貨架編號</th>
+                                <th>商品名稱</th>
+                                <th>現有數量</th>
+                                <th>補貨數量</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>可口可樂</td>
+                                <td class="save">8</td>
+                                <td class="editable">0</td>
+                                <td><a href="#" style="z-index:2"><i class="fa fa-remove fa-2x" ></i></a></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>美麗果</td>
+                                <td class="save">8</td>
+                                <td class="editable">0</td>
+                                <td><a href="#"><i class="fa fa-remove fa-2x"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>雪碧</td>
+                                <td class="alert-danger save">0</td>
+                                <td class="editable">0</td>
+                                <td><a href="#"><i class="fa fa-remove fa-2x"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*第二欄*@
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-hover " id="edit2">
+                        <thead>
+                            <tr>
+                                <th>貨架編號</th>
+                                <th>商品名稱</th>
+                                <th>現有數量</th>
+                                <th>補貨數量</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>4</td>
+                                <td>茶裏王(紅茶)</td>
+                                <td class="save">10</td>
+                                <td class="editable">0</td>
+                                <td><a href="#"><i class="fa fa-remove fa-2x"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>茶裏王(日式無糖綠茶)</td>
+                                <td class="label-danger save">2</td>
+                                <td class="editable">0</td>
+                                <td><a href="#"><i class="fa fa-remove fa-2x"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>茶裏王(白毫烏龍)</td>
+                                <td class="save">8</td>
+                                <td class="editable">0</td>
+                                <td><a href="#"><i class="fa fa-remove fa-2x"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="pull-right">
+            <a href="#" id="pluS"><i class="fa fa-check fa-5x"></i></a>
+            
+        </div>
+    </div>
+</div>
+
+<script src="~/assets/js/SimpleTableCellEditor.es6.min.js"></script>
+<script>
+    
+    var advancedEditor1 = new SimpleTableCellEditor("edit1");
+    var advancedEditor2 = new SimpleTableCellEditor("edit2");
+    advancedEditor1.SetEditableClass("editable", {
+        validation: $.isNumeric
+    });
+    advancedEditor2.SetEditableClass("editable", {
+        validation: $.isNumeric
+    });
+
+    
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+

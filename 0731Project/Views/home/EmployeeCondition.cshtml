@@ -1,0 +1,141 @@
+﻿@model IEnumerable<_0731Project.Models.EmpDb>
+@{
+    ViewBag.Title = "EmployeeCondition";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    @*主頁開始*@
+    <div class="col-md-12">
+        <!--    Hover Rows  -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2> <span class="fa fa-1x fa-address-card">員工狀況</span></h2>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>員工編號</th>
+                                <th>姓名</th>
+                                <th>今日狀態</th>
+                                <th>目前進度</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>@item.EmployeeID</td>
+                                <td>@item.UserName</td>
+                                @if (item.Assignment == 1)
+                                {
+                                    <td><span class="label label-success">上班</span></td>
+                                }
+                                else
+                                {
+                                    <td><span class="label label-default">請假</span></td>
+                                }
+                                @if (@item.MachineId == "0" & item.Assignment == 0)
+                                {
+                                    <td><span class="label label-default">今日請假</span></td>
+                                }
+                                else if (@item.MachineId == "0" & item.Assignment == 1)
+                                {
+                                    <td><span class="label label-default">未指派機臺</span></td>
+                                }
+                                else
+                                {
+                                    <td>第 @item.MachineId 機臺補貨</td>
+                                }
+                                <td class="tdhide">@item.Account</td>
+                            </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="id01" class="popupmodal ">
+    <form class="popupmodal-content popupanimate" action="" method="post">
+        <div class="popupcontainer">
+            <div class="row">
+                <div class="col-lg-3">
+                    <label for="ename"><b>姓名</b></label><br />
+                    <input class="popupinput nameinput" type="text" name="ename" required id="nameinput">
+                    <input class="tdhide accinput" type="text" name="eacc" required id="accinput">
+                </div>
+                <div class="col-lg-3">
+                    <label for="eassi"><b>請假(今日上班請輸入1,請假請輸入0)</b></label><br />
+                    <input class="popupinput assiinput" type="text" name="eassi" required id="assiinput">
+                </div>
+                <div class="col-lg-3">
+                    <label for="emach"><b>今日負責機臺</b></label><br />
+                    <input class="popupinput machinput" type="text" name="emach" required id="machinput">
+                </div>
+                <div class="col-lg-3">
+                    <br />
+                    <button type="submit" class="popupbtn">送出</button>
+                    <button type="button" class="cancelbtn">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        var modal = document.getElementById("id01");
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        $(".cancelbtn").click(function () {
+            $("#id01").css("display", "none");
+        })
+        $("td").click(function () {
+            //var x = $(this).parents("tr").children("td:first").text();
+            ////console.log(x);
+            $("#id01").css("display", "block");
+        });
+
+        $("tr").click(function () {
+            var tableData = $(this).children("td").map(function () {
+                return $(this).text();
+            }).get();
+            $("#nameinput").attr("value", tableData[1]);
+            $("#assiinput").attr("value", tableData[2]);
+            if (tableData[3].slice(2, 3) == "派" || tableData[3].slice(2, 3) == "請")
+            {
+                $("#machinput").attr("value", 0);
+            } else {
+                $("#machinput").attr("value", tableData[3].slice(2, 3));
+            }
+            $("#accinput").attr("value", tableData[4]);
+            console.log(tableData);
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+<script>
+    $(document).ready(function ($) {
+        $(".clickable-row").click(function () {
+            window.location = $(this).data("href");
+        });
+    });
+</script>

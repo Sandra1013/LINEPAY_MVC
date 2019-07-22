@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "PayOK";
+}
+    <script>setTimeout('window.location.replace("http://localhost:50237/Home/Index1")', 10000)</script>
+
+    <div style="height:1000px">
+        <div class="center" >
+            <div class="card" style="height:500px">
+                <div class="card__image-container">
+                    <img class="card__image" src="https://images.unsplash.com/photo-1519999482648-25049ddd37b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2126&q=80" alt="">
+                </div>
+
+                <svg class="card__svg" viewBox="0 0 800 500">
+
+                    <path d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400 L 800 500 L 0 500" stroke="transparent" fill="#333" />
+                    <path class="card__line" d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400" stroke="pink" stroke-width="3" fill="transparent" />
+                </svg>
+
+                <div class="card__content" style="text-align:center">
+                    <h1 class="card__title">付款完成</h1>
+                    <h3>歡迎再次光臨</h3>
+                    <a href="http://localhost:50237/Home/Product"><button type="submit" class="btn1">繼續購買</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $.post("http://10.0.104.142/cgi-bin/gear2.cgi?deg=90")
+        })
+    </script>

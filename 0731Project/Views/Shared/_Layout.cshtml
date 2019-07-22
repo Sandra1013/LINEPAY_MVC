@@ -1,0 +1,176 @@
+﻿
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>自動販賣機後台管理系統</title>
+
+    <!-- BOOTSTRAP STYLES-->
+    <link href="~/assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <!--    <link href="assets/css/font-awesome.css" rel="stylesheet" />-->
+    <link rel="stylesheet" href="~/assets/css/font-awesome.css">
+    <!--CUSTOM BASIC STYLES-->
+    <link href="~/assets/css/basic.css" rel="stylesheet" />
+    <!--CUSTOM MAIN STYLES-->
+    <link href="~/assets/css/custom.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    @*Import Jquery*@ 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">導覽列</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/home/index">自動販賣機後台管理系統</a>
+            </div>
+
+            <div class="header-right">
+                <!--<a href="message-task.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+                <a href="message-task.html" class="btn btn-primary" title="New Task"><b>40 </b><i class="fa fa-bars fa-2x"></i></a>-->
+                <a href="@Url.Action("Login")" class="btn btn-primary" title="更換使用者"><i class="fa fa-exchange fa-2x"></i></a>
+                <a href="@Url.Action("Login")" class="btn btn-danger" title="登出"><i class="fa fa-sign-out fa-2x"></i></a>
+            </div>
+        </nav>
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li>
+                        <div class="user-img-div">
+                            <img src="~/assets/img/user.png" class="img-thumbnail" />
+
+                            <div class="inner-text">
+                                @Session["Welcome"]
+                                <br />
+                                @*<small>上次登入 : 2 星期以前.. </small>*@
+                            </div>
+                        </div>
+
+                    </li>
+
+
+                    <li>
+                        <a class="active-menu" href="index.html"><i class="fa fa-home "></i>後台管理首頁</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-desktop "></i>機臺管理<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="@Url.Action("MachineCondition")"><i class="fa fa-dashboard"></i>機臺狀況</a>
+                            </li>
+                            <li>
+                                <a href="/home/MachineEdit"><i class="fa fa-desktop "></i>機臺修改及補貨管理<span class="fa arrow"></span></a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-address-book"></i>員工管理<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            @*<li>
+                    <a href="panel-tabs.html"><i class="fa fa-outdent"></i>員工派遣管理</a>
+                </li>*@
+                            <li>
+                                <a href="@Url.Action("EmployeeCondition")"><i class="fa fa-address-card "></i>員工狀態</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("EmployeeEdit")"><i class="fa fa-edit"></i>員工編輯</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-dollar "></i>收益管理<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="panel-tabs.html"><i class="fa fa-dollar"></i>員工薪水管理</a>
+                            </li>
+                            <li>
+                                <a href="panel-tabs.html"><i class="fa fa-line-chart "></i>機臺收益</a>
+                            </li>
+                            <li>
+                                <a href="panel-tabs.html"><i class="fa fa-pie-chart "></i>收益報表</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-dollar "></i>倉庫管理<span class="fa arrow"></span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner" >
+
+                <!-- /. ROW  -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="main-box mb-blue">
+                            <a href="/home/MachineCondition">
+                                <i class="fa fa-dashboard fa-5x"></i>
+                                <h5>機臺狀況</h5>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="main-box mb-dull">
+                            <a href="/home/EmployeeCondition">
+                                <i class="fa fa-outdent fa-5x"></i>
+                                <h5>員工狀況</h5>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="main-box mb-pink">
+                            <a href="#">
+                                <i class="fa fa-dollar fa-5x"></i>
+                                <h5>收益狀況</h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <!-- /. ROW  -->
+                        <!-- /. ROW  -->
+                    <!-- /.REVIEWS &  SLIDESHOW  -->
+                    @RenderBody()
+                    <!--/.Chat Panel End-->
+                <!--/.Row-->
+                <hr />
+                <!--/.ROW-->
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+
+    <div id="footer-sec">
+        &copy; 2014 YourCompany | Design By : <a href="http://www.binarytheme.com/" target="_blank">BinaryTheme.com</a>
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <!--    <script src="assets/js/jquery-1.10.2.js"></script>-->
+    
+    @*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>*@
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="~/assets/js/bootstrap.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="~/assets/js/jquery.metisMenu.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="~/assets/js/custom.js"></script>
+    <!--               -->
+
+</body>
+</html>

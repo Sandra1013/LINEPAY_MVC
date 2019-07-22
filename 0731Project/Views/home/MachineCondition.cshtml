@@ -1,0 +1,53 @@
+﻿@model IEnumerable<_0731Project.Models.MachineDb>
+@{
+    ViewBag.Title = "MachineResult";
+
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <!--    Hover Rows  -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2> <span class="fa fa-1x fa-dashboard">  機臺狀況</span></h2>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>機臺編號</th>
+                                <th>機臺位置</th>
+                                <th>溫度</th>
+                                <th>運作狀態</th>
+                                <th>商品數量</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                Random x = new Random();
+                                int y = x.Next(6,15);
+                                <tr class="clickable-row" data-href="MachineEdit">
+                                    <td>@item.MachineId</td>
+                                    <td>@item.Area</td>
+                                    <td>@y 度 </td>
+                                    <td>良好</td>
+                                    <td class="alert-danger">須補貨</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function ($) {
+        $(".clickable-row").click(function () {
+            window.location = $(this).data("href");
+        });
+    });
+</script>

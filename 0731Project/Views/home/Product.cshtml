@@ -1,0 +1,141 @@
+﻿@model IEnumerable<_0731Project.Models.ItemDb>
+@{
+    ViewBag.Title = "Product";
+}
+
+<section id="service" class="my-4">
+    <div class="container py-4">
+        <div class="row">
+            @foreach (var item in Model.Where(m => m.Class == "餅乾").ToList())
+            {
+                <div class="col-lg-3 col-6">
+                    <div class="ser-fashion-wthree">
+                        <figure class=" snip1504">
+                            <img class="mx-auto d-block" src="~/images/@item.ItemImg" alt="sample57" />
+                            <figcaption>
+                                <h3 style="font-size:30px;color:lightseagreen">@item.Slogan1</h3>
+                                <h5 class="mt-3" style="font-size:24px">@item.Slogen2</h5>
+                            </figcaption>
+                            <a href="#"></a>
+                        </figure>
+                    </div>
+                    <a href="#@item.ItemImg">
+                        <div style="text-align:center"><button type="submit" class="btn1 snip1189"><b>@item.ItemName<br>NT$@item.ItemUnitPrice</b></button></div>
+                    </a>
+                </div>
+            }
+        </div>
+
+        <div class="row mt-4">
+            @foreach (var item in Model.Where(m => m.Class == "飲料"))
+            {
+                <div class="col-lg-2 col-4">
+                    <div class="ser-fashion-wthree">
+                        <figure class=" snip1504">
+                            <img class="mx-auto d-block" src="~/images/@item.ItemImg" alt="sample57" />
+                            <figcaption>
+                                <h3 style="font-size:30px;color:lightseagreen">@item.Slogan1</h3>
+                                <h5 class="mt-3" style="font-size:24px">@item.Slogen2</h5>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <a href="#@item.ItemImg">
+                        <div style="text-align:center"><button type="submit" class="btn1 snip1189"><b>@item.ItemName<br>NT$@item.ItemUnitPrice</b></button></div>
+                    </a>
+                </div>
+            }
+        </div>
+
+        @foreach (var item in Model)
+        {
+            var PerCalorles = Convert.ToInt32(@item.Calorles) * Convert.ToInt32(@item.Capacity);
+            var PerProtein = Convert.ToInt32(@item.Protein) * Convert.ToInt32(@item.Capacity);
+            var PerFat = Convert.ToInt32(@item.Fat) * Convert.ToInt32(@item.Capacity);
+            var PerCarbohydrate = Convert.ToInt32(@item.Carbohydrate) * Convert.ToInt32(@item.Capacity);
+            var PerSugars = Convert.ToInt32(@item.Sugars) * Convert.ToInt32(@item.Capacity);
+            var PerSodium = Convert.ToInt32(@item.Sodium) * Convert.ToInt32(@item.Capacity);
+            <!-- popup-->
+            <div id="@item.ItemImg" class="popup-effect">
+                <div class="popup">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="my-3" style="text-align:center">
+                                <h3><b>付費方式</b></h3>
+                            </div>
+                            <form action="@Url.Action("Reserve")?ItemId=@item.ItemId" name="buy" method="post">
+                                <input type="image" name="name" src="~/images/LinePay.png" onclick="document.buy.submit()"/>
+                                <input type="hidden" name="capture" value="True" />
+                            </form>
+
+                        </div>
+                        <div class="col-6">
+                            <div class="my-3" style="text-align:center">
+                                <h3><b>價格</b></h3>
+                            </div>
+                            <div style="text-align:center;line-height:150px;height: 150px;font-size: 30px">NT$@item.ItemUnitPrice</div>
+                        </div>
+                        <div class="col-6"><img src="~/images/@item.ItemImg" alt="sample60" class="mt-3 mx-auto b-block" style="height: 200px" /></div>
+                        <a class="close" href="#gallery">&times;</a>
+                        <div class="col-6 mt-3">
+                            <table style="background-color:#CFEBF2;color:#FC4A1A;font-size:14px">
+                                <tr>
+                                    <th class="th1">項目</th>
+                                    @if (@item.Class == "飲料")
+                                    {
+                                        <th class="th2">每 100 ML</th>}
+                                    else
+                                    {
+                                        <th class="th2">每 100 g</th>
+                                    }
+                                    <th class="th2">每份</th>
+                                </tr>
+                                <tr>
+                                    <td class="td1">熱量</td>
+                                    <td class="td2">@item.Calorles 大卡</td>
+                                    <td class="td2">@PerCalorles 大卡</td>
+                                </tr>
+                                <tr>
+                                    <td class="td1">蛋白質</td>
+                                    <td class="td2">@item.Protein 公克</td>
+                                    <td class="td2">@PerProtein 公克</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="td1">脂肪</td>
+                                    <td class="td2">@item.Fat 公克</td>
+                                    <td class="td2">@PerFat 公克</td>
+                                </tr>
+                                <tr>
+                                    <td class="td1">碳水化合物</td>
+                                    <td class="td2">@item.Carbohydrate 公克</td>
+                                    <td class="td2">@PerCarbohydrate 公克</td>
+                                </tr>
+                                <tr>
+                                    <td class="td1">糖</td>
+                                    <td class="td2">@item.Sugars 公克</td>
+                                    <td class="td2">@PerSugars 公克</td>
+                                </tr>
+                                <tr>
+                                    <td class="td1">鈉</td>
+                                    <td class="td2">@item.Sodium 毫克</td>
+                                    <td class="td2">@PerSodium 毫克</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- //popup -->
+        }
+    </div>
+</section>
+
+<script>
+    /* Demo purposes only */
+    $(".hover").mouseleave(
+        function () {
+            $(this).removeClass("hover");
+        }
+    );
+</script>
+

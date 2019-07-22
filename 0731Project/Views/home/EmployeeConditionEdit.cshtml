@@ -1,0 +1,60 @@
+﻿@model IEnumerable<_0731Project.Models.EmpDb>
+@{
+    ViewBag.Title = "EmployeeConditionEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <!--    Hover Rows  -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2> <span class="fa fa-1x fa-address-card">員工狀況</span></h2>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>員工編號</th>
+                                <th>姓名</th>
+                                <th>今日狀態</th>
+                                <th>目前進度</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.EmployeeID</td>
+                                    <td>@item.UserName</td>
+                                    @if (item.Assignment == 1)
+                                    {
+                                        <td><span class="label label-success">上班</span></td>
+                                    }
+                                    else
+                                    {
+                                        <td><span class="label label-default">請假</span></td>
+                                    }
+                                    @if (@item.MachineId == "0")
+                                    {
+                                        <td><span class="label label-default">今日無上班</span></td>
+                                    }
+                                    else
+                                    {
+                                        <td>第 @item.MachineId 機臺補貨</td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

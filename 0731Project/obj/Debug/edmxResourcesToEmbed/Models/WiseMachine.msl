@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WiseMachineModelStoreContainer" CdmEntityContainer="WiseMachineEntities">
+    <EntitySetMapping Name="EmpDbs">
+      <EntityTypeMapping TypeName="WiseMachineModel.EmpDb">
+        <MappingFragment StoreEntitySet="EmpDb">
+          <ScalarProperty Name="Account" ColumnName="Account" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="Permission" ColumnName="Permission" />
+          <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+          <ScalarProperty Name="Assignment" ColumnName="Assignment" />
+          <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItemDbs">
+      <EntityTypeMapping TypeName="WiseMachineModel.ItemDb">
+        <MappingFragment StoreEntitySet="ItemDb">
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="ItemImg" ColumnName="ItemImg" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="ItemUnitPrice" ColumnName="ItemUnitPrice" />
+          <ScalarProperty Name="Class" ColumnName="Class" />
+          <ScalarProperty Name="Calorles" ColumnName="Calorles" />
+          <ScalarProperty Name="Protein" ColumnName="Protein" />
+          <ScalarProperty Name="Carbohydrate" ColumnName="Carbohydrate" />
+          <ScalarProperty Name="Fat" ColumnName="Fat" />
+          <ScalarProperty Name="Sugars" ColumnName="Sugars" />
+          <ScalarProperty Name="Sodium" ColumnName="Sodium" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+          <ScalarProperty Name="Slogan1" ColumnName="Slogan1" />
+          <ScalarProperty Name="Slogen2" ColumnName="Slogen2" />
+          <ScalarProperty Name="PayUrl" ColumnName="PayUrl" />
+          <ScalarProperty Name="ImgUrl" ColumnName="ImgUrl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MachineDbs">
+      <EntityTypeMapping TypeName="WiseMachineModel.MachineDb">
+        <MappingFragment StoreEntitySet="MachineDb">
+          <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+          <ScalarProperty Name="Serial" ColumnName="Serial" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MacInvDbs">
+      <EntityTypeMapping TypeName="WiseMachineModel.MacInvDb">
+        <MappingFragment StoreEntitySet="MacInvDb">
+          <ScalarProperty Name="DataNo" ColumnName="DataNo" />
+          <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+          <ScalarProperty Name="Account" ColumnName="Account" />
+          <ScalarProperty Name="ItemId_DataNo" ColumnName="ItemId_DataNo" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WarehouseDbs">
+      <EntityTypeMapping TypeName="WiseMachineModel.WarehouseDb">
+        <MappingFragment StoreEntitySet="WarehouseDb">
+          <ScalarProperty Name="DataNo" ColumnName="DataNo" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="Addtime" ColumnName="Addtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

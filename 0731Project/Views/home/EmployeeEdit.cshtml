@@ -1,0 +1,160 @@
+﻿@model IEnumerable<_0731Project.Models.EmpDb>
+@{
+    ViewBag.Title = "EmployeeEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <!--    Hover Rows  -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2> <span class="fa fa-1x fa-edit">員工編輯</span></h2>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>員編</th>
+                                <th>姓名</th>
+                                <th>帳號</th>
+                                <th>電話</th>
+                                <th>到職日</th>
+                                <th>性別</th>
+                                <th>生日</th>
+                                <th>信箱</th>
+                                <th>地址</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{var y = 1;}
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+                                    <td>@item.EmployeeID</td>
+                                    <td>@item.UserName</td>
+                                    <td>@item.Account</td>
+                                    <td class="tdhide">@item.PassWord</td>
+                                    <td>@item.PhoneNum</td>
+                                    <td>@item.AddDate</td>
+                                    <td>@item.Sex</td>
+                                    <td>@item.Birthday</td>
+                                    <td>@item.Email</td>
+                                    <td>@item.Address</td>
+                                    <td class="tdhide">@item.Permission</td>
+                                </tr>
+                                y += 1;
+
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="id01" class="popupmodal ">
+    <form class="popupmodal-content popupanimate" action="" method="post">
+        <div class="popupcontainer">
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="ename"><b>姓名</b></label>
+                    <input class="popupinput nameinput" type="text" name="ename" required id="nameinput">
+                </div>
+                <div class="col-md-3">
+                    <label for="eacc"><b>帳號</b></label>
+                    <input class="popupinput accinpu" type="text" name="eacc" required id="accinput">
+                </div>
+                <div class="col-md-3">
+                    <label for="epw"><b>密碼</b></label>
+                    <input class="popupinput pwinput" type="text" name="epw" required id="pwinput">
+                </div>
+                <div class="col-md-3">
+                    <label for="epho"><b>電話</b></label>
+                    <input class="popupinput phoneinput" type="text" name="epho" required id="phoneinput">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="edate"><b>到職日</b></label>
+                    <input class="popupinput adddateinput" type="text" name="edate" required id="adddateinput">
+                </div>
+                <div class="col-md-3">
+                    <label for="esex"><b>性別</b></label>
+                    <input class="popupinput sexinpu" type="text" name="esex" required id="sexinput">
+                </div>
+                <div class="col-md-3">
+                    <label for="ebir"><b>生日</b></label>
+                    <input class="popupinput birthinput" type="text" name="ebir" required id="birthinput">
+                </div>
+                <div class="col-md-3">
+                    <label for="email"><b>電子信箱</b></label>
+                    <input class="popupinput emailinput" type="text" name="email" required id="emailinput">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="eaddr"><b>住址</b></label>
+                    <input class="popupinput addressinput" type="text" name="eaddr" required id="addressinput">
+                </div>
+                <div class="col-md-3">
+                    <label for="eper"><b>權限</b></label>
+                    <input class="popupinput perinput" type="text" name="eper" required id="perinput">
+                </div>
+                <div class="col-md-3">
+                    <span>@ViewBag.msg</span>
+                    <button type="submit" class="popupbtn">送出</button>
+                    <button type="button" class="cancelbtn">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        var modal = document.getElementById("id01");
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        $(".cancelbtn").click(function () {
+            $("#id01").css("display", "none");
+        })
+        $("td").click(function () {
+            //var x = $(this).parents("tr").children("td:first").text();
+            ////console.log(x);
+            $("#id01").css("display", "block");
+        });
+
+        $("tr").click(function () {
+            var tableData = $(this).children("td").map(function () {
+                return $(this).text();
+            }).get();
+            $("#nameinput").attr("value", tableData[1]);
+            $("#accinput").attr("value", tableData[2]);
+            $("#pwinput").attr("value", tableData[3]);
+            $("#phoneinput").attr("value", tableData[4]);
+            $("#adddateinput").attr("value", tableData[5]);
+            $("#sexinput").attr("value", tableData[6]);
+            $("#birthinput").attr("value", tableData[7]);
+            $("#emailinput").attr("value", tableData[8]);
+            $("#addressinput").attr("value", tableData[9]);
+            $("#perinput").attr("value", tableData[10]);
+
+            console.log(tableData);
+        });
+
+
+    });
+</script>
